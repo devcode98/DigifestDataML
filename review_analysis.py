@@ -3,11 +3,9 @@ import matplotlib.pyplot as py
 import pandas as pd 
 import numpy as np 
 import Udaipur_guide_data as ud
-def func(id_guide):
+def func():
     
-    guide_id=ud.list_ID
-    if id_guide in guide_id:
-    
+        
             review_data=pd.read_csv('Guide_review_train.csv')
             i=0
             dict_data=[]  
@@ -28,7 +26,7 @@ def func(id_guide):
             a=dict_data[0]
             final_words.append(a)
             i=1
-            while i<311:
+            while i<309:
                  a=dict_data[i]
                  if a in final_words:
                      i=i+1
@@ -128,6 +126,7 @@ def func(id_guide):
             x_test=x_test.iloc[0:,0]
             final_array=np.array(x_test)
             final_array=final_array.reshape(1,-1)
+            print('done using the logistic regression')
             print(object1.predict(final_array))
             
             
@@ -139,29 +138,25 @@ def func(id_guide):
             from sklearn.naive_bayes import GaussianNB
             gnb = GaussianNB()
             gnb.fit(x_train,y_train)
+            print('Using the Naive Bayes')
             print(gnb.predict(final_array))
             
             
             from sklearn.tree import DecisionTreeClassifier
             dec=DecisionTreeClassifier()
             dec.fit(x_train,y_train)
+            print('Using the decision tree algorithmn')
             print(gnb.predict(final_array))
             
             from sklearn.ensemble import RandomForestClassifier
             
             rand=RandomForestClassifier()
             rand.fit(x_train,y_train)
+            print('Using the Random Forest')
             print(rand.predict(final_array))
             
-            from sklearn.ensemble import RandomForestClassifier
-            
-            rand=RandomForestClassifier()
-            rand.fit(x_train,y_train)
-            print(rand.predict(final_array))
-    else:
-           print('The data you have entered is wrong')
-           
-def func2():   
-    idnum=input('Enter the ID of the guide')
-    func(idnum)
-func2()    
+        
+func()
+''' Since the data given less is quite less in number it is very much waste of the resources to
+    use DEEP LEARNING ALGORITHMNS
+'''    
